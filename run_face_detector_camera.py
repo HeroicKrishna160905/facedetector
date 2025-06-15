@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-# --- Load your model (update filename if needed) ---
+# 
 model = tf.keras.models.load_model('face_detector_model.keras')
 
-IMAGE_SIZE = (120, 120)  # Must match your model's input size
+IMAGE_SIZE = (120, 120)  
 
 def preprocess(frame):
     img = cv2.resize(frame, IMAGE_SIZE)
@@ -14,7 +14,7 @@ def preprocess(frame):
     return img
 
 # --- Start the webcam ---
-cap = cv2.VideoCapture(0)  # Use 0 for default camera
+cap = cv2.VideoCapture(0)  # 
 
 print("Press 'q' to quit.")
 while True:
@@ -30,7 +30,7 @@ while True:
     pred_class = pred_class[0][0]
     pred_bbox = pred_bbox[0]
 
-    if pred_class > 0.1:  # Lowered threshold for debug
+    if pred_class > 0.5:  
         h, w, _ = frame.shape
         x, y, bw, bh = pred_bbox
         x1 = int((x - bw/2) * w)
